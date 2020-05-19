@@ -2,7 +2,7 @@
  * initialize your data structure here.
  */
 var MedianFinder = function() {
-    
+    this.arr = [];
 };
 
 /** 
@@ -10,15 +10,33 @@ var MedianFinder = function() {
  * @return {void}
  */
 MedianFinder.prototype.addNum = function(num) {
+    const insert = n => {
+        let start = 0;
+        let end = this.arr.length;
+        
+        while (start < end) {
+            let mid = Math.floor((start + end) / 2)
+            if (n > this.arr[mid]) {
+                start = mid + 1;
+            } else {
+                end = mid;
+            }
+        }
+        this.arr.splice(start, 0, n); 
+    }
     
+    if (this.arr.length) insert(num)
+    else this.arr.push(num);
 };
 
 /**
  * @return {number}
  */
 MedianFinder.prototype.findMedian = function() {
-    
+    let mid = Math.floor(this.arr.length/2)
+    return (this.arr.length % 2 === 0) ? (this.arr[mid-1] + this.arr[mid])/2 : this.arr[mid];
 };
+
 
 /** 
  * Your MedianFinder object will be instantiated and called as such:
