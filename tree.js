@@ -70,3 +70,25 @@ function TreeNode(val) {
     this.left = null;
     this.right = null;
 }
+
+var levelOrder = function(root) {
+    let res = [];
+    let level = 0;
+ 
+    function addNode(node, level) {
+        if (!node) {
+            return;
+        } else {
+            if (level >= res.length) {
+                res[level] = [];
+            }
+            
+            res[level].push(node.val);
+            addNode(node.left, level+1);
+            addNode(node.right, level+1);
+        }
+    }
+    
+    addNode(root, level);
+    return res;
+}
