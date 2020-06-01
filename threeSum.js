@@ -29,14 +29,10 @@ var threeSum = function(nums) {
                 j++;
                 k--;
                 continue;
-            }
-            if (sum < 0) {
+            } else if (sum < 0) {
                 j++;
-                continue;
-            }
-            if (sum > 0) {
+            } else if (sum > 0) {
                 k--;
-                continue;
             }
         }
     }
